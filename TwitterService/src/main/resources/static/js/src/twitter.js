@@ -1,7 +1,7 @@
 $(document).ready(function() {
-	 $('#tweetDataTable').DataTable( {
+	 $('#example').DataTable( {
 	 ajax: {
-         url: "http://localhost:8080/getTimeLines?userName=vamsy_raju&sizeLimit=5",
+         url: "http://localhost:8080/getTimeLines?userName=salesforce&sizeLimit=10",
          type: "GET"
      },
      columns: [
@@ -12,4 +12,5 @@ $(document).ready(function() {
          { data: "retweetCount" }
      ]
 	 });
+	 
 });
