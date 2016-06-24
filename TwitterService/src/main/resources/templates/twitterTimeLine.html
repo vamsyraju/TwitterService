@@ -2,36 +2,35 @@
 <html>
 <head>
 <title>Twitter TimeLine</title>
-<link rel="stylesheet" href="/css/jquery.dataTables.min.css"/>
-<link rel="stylesheet" href="/css/buttons.dataTables.min.css"/>
-<link rel="stylesheet" href="/css/select.dataTables.min.css"/>
-<link rel="stylesheet" href="/css/editor.dataTables.min.css"/>	
+<link rel="stylesheet" href="/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="/css/buttons.dataTables.min.css" />
+<link rel="stylesheet" href="/css/select.dataTables.min.css" />
+<link rel="stylesheet" href="/css/editor.dataTables.min.css" />
+<link rel="stylesheet" href="/css/main.css" />
 </head>
 <body>
-	<table id="example" class="display" cellspacing="0" width="100%">
+	<noscript>
+		<img src="/images/JavascriptDisabled.png" id="noJavaScript" />
+	</noscript>
+	<div id="twitterDiv"></div>
+	<table id="twitterTable" class="display">
 		<thead>
 			<tr>
-				<th>userName</th>
-				<th>screenName</th>
-				<th>profileImage</th>
-				<th>tweetContent</th>
-				<th>retweetCount</th>
+				<th>Profile Image</th>
+				<th>User Name</th>
+				<th>Screen Name</th>
+				<th>Number Of Retweets</th>
+				<th>Tweet</th>
 			</tr>
 		</thead>
-		<tfoot>
-			<tr>
-				<th>userName</th>
-				<th>screenName</th>
-				<th>profileImage</th>
-				<th>tweetContent</th>
-				<th>retweetCount</th>
-			</tr>
-		</tfoot>
 	</table>
 	<script type="text/javascript" th:src="@{/js/lib/jquery-1.12.3.js}"></script>
-	<script type="text/javascript" th:src="@{/js/lib/jquery.dataTables.min.js}"></script>
-	<script type="text/javascript" th:src="@{/js/lib/dataTables.buttons.min.js}"></script>
-	<script type="text/javascript" th:src="@{/js/lib/dataTables.select.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/js/lib/jquery.dataTables.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/js/lib/dataTables.buttons.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/js/lib/dataTables.select.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/src/twitter.js}"></script>
 </body>
 </html>

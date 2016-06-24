@@ -1,0 +1,31 @@
+#twitterDiv {
+	width: 300px;
+	font-size: 35px;
+	color: #333333;
+	margin: 0 auto;
+	text-align: center;
+}
+
+body {
+	color: #333333;
+	background-color: #A9D0F5;
+}
+
+#noJavaScript {
+	display: block;
+	margin: auto;
+	width: 50%;
+}
+
+#errorDiv {
+	width: 100px;
+	height: 100px;
+	font-size: 20px;
+	background-color: #A9D0F5;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}

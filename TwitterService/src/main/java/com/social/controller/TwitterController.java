@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.social.exception.TwitterException;
 import com.social.service.SocialMediaService;
 import com.social.twitter.entities.TimeLine;
 
@@ -20,6 +21,11 @@ public class TwitterController {
 	public @ResponseBody TimeLine getTimeLine(
 			@RequestParam(value = "userName", required = true, defaultValue = "salesforce") String userName,
 			@RequestParam(value = "sizeLimit", required = false, defaultValue = "10") int sizeLimit) {
-		return service.getTimeLineForUser(userName, sizeLimit);
+		try{
+			return service.getTimeLineForUser(userName, sizeLimit);
+		}catch(TwitterException te){
+			throw te;
+		}
 	}
+	
 }
