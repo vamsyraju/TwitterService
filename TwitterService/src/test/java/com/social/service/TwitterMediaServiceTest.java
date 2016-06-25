@@ -67,6 +67,7 @@ public class TwitterMediaServiceTest {
 		Twitter t = EasyMock.createMock(Twitter.class);
 		TwitterException exception = EasyMock
 				.createMock(TwitterException.class);
+		EasyMock.expect(exception.getErrorMessage()).andReturn("Mock Error");
 		EasyMock.expect(exception.isCausedByNetworkIssue()).andReturn(true);
 		EasyMock.replay(exception);
 		EasyMock.expect(factory.getInstance()).andReturn(t);
@@ -86,6 +87,7 @@ public class TwitterMediaServiceTest {
 		Twitter t = EasyMock.createMock(Twitter.class);
 		TwitterException exception = EasyMock
 				.createMock(TwitterException.class);
+		EasyMock.expect(exception.getErrorMessage()).andReturn("Mock Error");
 		EasyMock.expect(exception.isCausedByNetworkIssue()).andReturn(false);
 		EasyMock.expect(exception.getErrorCode()).andReturn(HttpStatus.UNAUTHORIZED.value());
 		EasyMock.replay(exception);
@@ -105,6 +107,7 @@ public class TwitterMediaServiceTest {
 		Twitter t = EasyMock.createMock(Twitter.class);
 		TwitterException exception = EasyMock
 				.createMock(TwitterException.class);
+		EasyMock.expect(exception.getErrorMessage()).andReturn("Mock Error");
 		EasyMock.expect(exception.isCausedByNetworkIssue()).andReturn(false);
 		EasyMock.expect(exception.getErrorCode()).andReturn(0);
 		EasyMock.replay(exception);
