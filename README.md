@@ -9,3 +9,7 @@ Twitter Service is a spring boot application. All you need to do is run the Appl
 ## Okey good, What is the home page?
 
 http://hostName:portNumber/socialMedia
+
+## Is this application tested ?
+
+It has 98% code coverage and integration tests 
