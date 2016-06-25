@@ -26,7 +26,7 @@ import com.social.factory.TwitterFactory;
 import com.social.twitter.entities.TimeLine;
 
 public class TwitterMediaServiceTest {
-	public static String JSON_RESPONSE = "[{text:\"Hello\", \"truncated\": true}]";
+	public static final String JSON_RESPONSE = "[{text:\"Hello\", \"truncated\": true}]";
 
 	@Test
 	public void getUserTimelineHappyPath() throws Exception {
