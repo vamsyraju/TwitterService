@@ -1,9 +1,10 @@
 #twitterDiv {
 	width: 300px;
 	font-size: 35px;
-	color: #333333;
+	color: #ffffff;
 	margin: 0 auto;
 	text-align: center;
+	font-family: "fa fa-twitter", Times, serif;
 }
 
 body {
