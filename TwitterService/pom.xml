@@ -24,23 +24,20 @@
 			<artifactId>twitter4j-core</artifactId>
 			<version>[3.0,)</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.fasterxml.jackson.core</groupId> -->
-<!-- 			<artifactId>jackson-core</artifactId> -->
-<!-- 			<version>2.2.1</version> -->
-<!-- 			<scope>test</scope> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.fasterxml.jackson.core</groupId> -->
-<!-- 			<artifactId>jackson-annotations</artifactId> -->
-<!-- 			<version>2.2.1</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 		<groupId>com.fasterxml.jackson.core</groupId> -->
-<!-- 		<artifactId>jackson-databind</artifactId> -->
-<!-- 		<version>2.2.1</version> -->
-<!-- 		<scope>test</scope> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path-assert</artifactId>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-all</artifactId>
@@ -67,12 +64,37 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>3.2.3.RELEASE</version>
+			<artifactId>spring-test-mvc</artifactId>
+			<version>1.0.0.M2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.easymock/easymock -->
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>3.4</version>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+		<dependency>
+			<groupId>com.googlecode.openpojo</groupId>
+			<artifactId>openpojo</artifactId>
+			<version>0.7.3</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.powermock/powermock-api-mockito -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.powermock</groupId> -->
+		<!-- <artifactId>powermock-api-mockito</artifactId> -->
+		<!-- <version>1.6.5</version> -->
+		<!-- </dependency> -->
 
+	</dependencies>
+	<repositories>
+		<repository>
+			<id>spring-mvc</id>
+			<name>your custom repo</name>
+			<url>http://repo.springsource.org/libs-snapshot/</url>
+		</repository>
+	</repositories>
 	<properties>
 		<java.version>1.7</java.version>
 	</properties>
