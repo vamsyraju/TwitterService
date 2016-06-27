@@ -1,17 +1,21 @@
 package com.social.exception;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
+@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
 public class SocialMediaException extends RuntimeException {
 
-	private static final long serialVersionUID = 1492617009543548860L;
+	private static final long serialVersionUID = 1L;
+
+	private String message;
+
+	public String getMessage() {
+		return message;
+	}
 
 	public SocialMediaException(String message) {
-		super(message);
+		this.message = message;
 	}
-
-	public SocialMediaException(Throwable th) {
-		super(th);
-	}
-
 
 }

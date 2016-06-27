@@ -21,7 +21,7 @@ import com.social.twitter.entities.TimeLine;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
-@IntegrationTest("server.port:8080")
+@IntegrationTest("server.port:8081")
 public class IntegrationTests {
 	public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	private RestTemplate restTemplate = new TestRestTemplate();
@@ -31,7 +31,7 @@ public class IntegrationTests {
 		HashMap<String, String> urlVariables = new HashMap<String, String>(2);
 		urlVariables.put("userName", "vamsy_raju");
 		urlVariables.put("sizeLimit", "10");
-		final ResponseEntity<TimeLine> responseEntity =restTemplate.getForEntity("http://localhost:8080/getTimeLines", TimeLine.class, urlVariables);
+		final ResponseEntity<TimeLine> responseEntity =restTemplate.getForEntity("http://localhost:8081/getTimeLines", TimeLine.class, urlVariables);
 		Assert.assertEquals(10, responseEntity.getBody().getData().size());
 		Assert.assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
 	}
@@ -39,14 +39,14 @@ public class IntegrationTests {
 	public void testSocialMedia(){
 		HashMap<String, String> urlVariables = new HashMap<String, String>(1);
 		urlVariables.put("value", "twitter");
-		final ResponseEntity<String> responseEntity =restTemplate.getForEntity("http://localhost:8080/socialMedia", String.class, urlVariables);
+		final ResponseEntity<String> responseEntity =restTemplate.getForEntity("http://localhost:8081/socialMedia", String.class, urlVariables);
 		Assert.assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
 	}
 	@Test
 	public void testSocialMediaError(){
 		HashMap<String, String> urlVariables = new HashMap<String, String>(1);
 		urlVariables.put("message", "ErrorMessage");
-		final ResponseEntity<String> responseEntity =restTemplate.getForEntity("http://localhost:8080/socialMediaError", String.class, urlVariables);
+		final ResponseEntity<String> responseEntity =restTemplate.getForEntity("http://localhost:8081/socialMediaError", String.class, urlVariables);
 		Assert.assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
 	}
 }

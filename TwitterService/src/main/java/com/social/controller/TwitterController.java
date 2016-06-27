@@ -1,7 +1,5 @@
 package com.social.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +13,7 @@ import com.social.twitter.entities.TimeLine;
 
 @Controller
 public class TwitterController {
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
+
 	@Autowired
 	SocialMediaService service;
 
@@ -24,15 +22,7 @@ public class TwitterController {
 			@RequestParam(value = "userName", required = true, defaultValue = "salesforce") String userName,
 			@RequestParam(value = "sizeLimit", required = false, defaultValue = "10") int sizeLimit)
 			throws SocialMediaException {
-		try {
-			log.debug("getTimeLine controller Called with parameters: UserName: "
-					+ userName + ", SizeLimit: " + sizeLimit);
-			TimeLine tl = service.getTimeLineForUser(userName, sizeLimit);
-			return tl;
-		} catch (SocialMediaException se) {
-			log.error("ERROR: " + se.getMessage());
-			throw se;
-		}
+		return service.getTimeLineForUser(userName, sizeLimit);
 	}
 
 }

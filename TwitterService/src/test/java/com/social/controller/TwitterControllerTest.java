@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -19,10 +20,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.social.exception.NetworkException;
-import com.social.exception.SecurityException;
-import com.social.exception.UnknownCauseException;
-import com.social.exception.UserNotFoundException;
+import com.social.exception.SocialMediaException;
 import com.social.service.SocialMediaService;
 import com.social.twitter.entities.TimeLine;
 import com.social.twitter.entities.Tweet;
@@ -96,46 +94,17 @@ public class TwitterControllerTest {
 	}
 
 	@Test
-	public void testGetTimeLineUserNotFoundException() throws Exception {
+	public void testGetTimeLineException() throws Exception {
 		Mockito.when(
 				mockService.getTimeLineForUser(Mockito.anyString(),
 						Mockito.anyInt())).thenThrow(
-				new UserNotFoundException("ALL HELL BROKE LOSE EXCEPTION"));
-		mockMvc.perform(get("/getTimeLines?userName=salesforce&sizeLimit=20"))
-				.andExpect(status().isBadRequest());
-
-	}
-
-	@Test
-	public void testGetTimeLineNetworkException() throws Exception {
-		Mockito.when(
-				mockService.getTimeLineForUser(Mockito.anyString(),
-						Mockito.anyInt())).thenThrow(
-				new NetworkException("ALL HELL BROKE LOSE EXCEPTION"));
-		mockMvc.perform(get("/getTimeLines?userName=salesforce&sizeLimit=20"))
-				.andExpect(status().isInternalServerError());
-
-	}
-
-	@Test
-	public void testGetTimeLineSecurityException() throws Exception {
-		Mockito.when(
-				mockService.getTimeLineForUser(Mockito.anyString(),
-						Mockito.anyInt())).thenThrow(
-				new SecurityException("ALL HELL BROKE LOSE EXCEPTION"));
-		mockMvc.perform(get("/getTimeLines?userName=salesforce&sizeLimit=20"))
-				.andExpect(status().isUnauthorized());
-
-	}
-
-	@Test
-	public void testGetTimeLineUnknownCauseException() throws Exception {
-		Mockito.when(
-				mockService.getTimeLineForUser(Mockito.anyString(),
-						Mockito.anyInt())).thenThrow(
-				new UnknownCauseException("ALL HELL BROKE LOSE EXCEPTION"));
-		mockMvc.perform(get("/getTimeLines?userName=salesforce&sizeLimit=20"))
-				.andExpect(status().isInternalServerError());
+				new SocialMediaException("ALL HELL BROKE LOSE EXCEPTION"));
+		try{
+			mockMvc.perform(get("/getTimeLines?userName=salesforce&sizeLimit=10"));
+				
+		}catch(SocialMediaException se){
+			Assert.assertEquals("ALL HELL BROKE LOSE EXCEPTION", se.getMessage());;
+		}
 
 	}
 
