@@ -46,7 +46,7 @@ public class TwitterControllerTest {
 	@Test
 	public void testGetTimeLineDefault() throws Exception {
 		Mockito.when(
-				mockService.getTimeLineForUser(Mockito.anyString(),
+				mockService.getRecentTimeLineForUser(Mockito.anyString(),
 						Mockito.anyInt())).thenReturn(timeLine);
 		mockMvc.perform(get("/getTimeLines"))
 				.andExpect(status().isOk())
@@ -71,7 +71,7 @@ public class TwitterControllerTest {
 	@Test
 	public void testGetTimeLineWithParameters() throws Exception {
 		Mockito.when(
-				mockService.getTimeLineForUser(Mockito.anyString(),
+				mockService.getRecentTimeLineForUser(Mockito.anyString(),
 						Mockito.anyInt())).thenReturn(timeLine);
 		mockMvc.perform(get("/getTimeLines?userName=salesforce&sizeLimit=20"))
 				.andExpect(status().isOk())
@@ -96,7 +96,7 @@ public class TwitterControllerTest {
 	@Test
 	public void testGetTimeLineException() throws Exception {
 		Mockito.when(
-				mockService.getTimeLineForUser(Mockito.anyString(),
+				mockService.getRecentTimeLineForUser(Mockito.anyString(),
 						Mockito.anyInt())).thenThrow(
 				new SocialMediaException("ALL HELL BROKE LOSE EXCEPTION"));
 		try{

@@ -40,7 +40,7 @@ public class TwitterMediaServiceTest {
 		EasyMock.replay(t);
 		TwitterMediaService service = new TwitterMediaService();
 		ReflectionTestUtils.setField(service, "factory", factory);
-		TimeLine timeLine = service.getTimeLineForUser("salesforce", 10);
+		TimeLine timeLine = service.getRecentTimeLineForUser("salesforce", 10);
 		Assert.assertEquals(1, timeLine.getData().size());
 		Assert.assertEquals("url", timeLine.getData().get(0).getProfileImage());
 		Assert.assertEquals("@ScreenName", timeLine.getData().get(0)
@@ -55,21 +55,21 @@ public class TwitterMediaServiceTest {
 	@Test(expected = SocialMediaException.class)
 	public void getUserTimelineUserNameEmpty() {
 		TwitterMediaService service = new TwitterMediaService();
-		service.getTimeLineForUser("", 10);
+		service.getRecentTimeLineForUser("", 10);
 
 	}
 	
 	@Test(expected = SocialMediaException.class)
 	public void getUserTimelineUserNameEmptySpace() {
 		TwitterMediaService service = new TwitterMediaService();
-		service.getTimeLineForUser(" ", 10);
+		service.getRecentTimeLineForUser(" ", 10);
 
 	}
 	
 	@Test(expected = SocialMediaException.class)
 	public void getUserTimelineSizeLessThenOne() {
 		TwitterMediaService service = new TwitterMediaService();
-		service.getTimeLineForUser("vamsy_raju", 0);
+		service.getRecentTimeLineForUser("vamsy_raju", 0);
 
 	}
 	
@@ -87,9 +87,10 @@ public class TwitterMediaServiceTest {
 		EasyMock.replay(t);
 		TwitterMediaService service = new TwitterMediaService();
 		ReflectionTestUtils.setField(service, "factory", factory);
-		service.getTimeLineForUser("salesforce", 10);
+		service.getRecentTimeLineForUser("salesforce", 10);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test(expected = SocialMediaException.class)
 	public void getUserTimelineReturnEmtpyResponse() throws Exception {
 		TwitterFactory factory = EasyMock.createMock(TwitterFactory.class);
@@ -106,7 +107,7 @@ public class TwitterMediaServiceTest {
 		EasyMock.replay(responseList);
 		TwitterMediaService service = new TwitterMediaService();
 		ReflectionTestUtils.setField(service, "factory", factory);
-		service.getTimeLineForUser("salesforce", 10);
+		service.getRecentTimeLineForUser("salesforce", 10);
 	}
 	
 	@Test(expected = SocialMediaException.class)
@@ -115,7 +116,7 @@ public class TwitterMediaServiceTest {
 		Twitter t = EasyMock.createMock(Twitter.class);
 		TwitterException exception = EasyMock
 				.createMock(TwitterException.class);
-		EasyMock.expect(exception.getMessage()).andReturn("Twitter Service Test error");
+		EasyMock.expect(exception.getMessage()).andReturn("Twitter Service Test error").anyTimes();
 		EasyMock.replay(exception);
 		EasyMock.expect(factory.getInstance()).andReturn(t);
 		EasyMock.expect(
@@ -125,7 +126,7 @@ public class TwitterMediaServiceTest {
 		EasyMock.replay(t);
 		TwitterMediaService service = new TwitterMediaService();
 		ReflectionTestUtils.setField(service, "factory", factory);
-		service.getTimeLineForUser("SalesForce", 10);
+		service.getRecentTimeLineForUser("SalesForce", 10);
 	}
 	
 	@Test(expected = SocialMediaException.class)
@@ -134,7 +135,7 @@ public class TwitterMediaServiceTest {
 		Twitter t = EasyMock.createMock(Twitter.class);
 		TwitterException exception = EasyMock
 				.createMock(TwitterException.class);
-		EasyMock.expect(exception.getMessage()).andReturn("Twitter Service Test error");
+		EasyMock.expect(exception.getMessage()).andReturn("Twitter Service Test error").anyTimes();
 		EasyMock.replay(exception);
 		EasyMock.expect(factory.getInstance()).andReturn(t);
 		EasyMock.expect(
@@ -144,7 +145,7 @@ public class TwitterMediaServiceTest {
 		EasyMock.replay(t);
 		TwitterMediaService service = new TwitterMediaService();
 		ReflectionTestUtils.setField(service, "factory", factory);
-		service.getTimeLineForUser("SalesForce", 10);
+		service.getRecentTimeLineForUser("SalesForce", 10);
 	}
 	@Test(expected = SocialMediaException.class)
 	public void getUserTimelineTwitterUnHandledException() throws TwitterException {
@@ -152,7 +153,7 @@ public class TwitterMediaServiceTest {
 		Twitter t = EasyMock.createMock(Twitter.class);
 		TwitterException exception = EasyMock
 				.createMock(TwitterException.class);
-		EasyMock.expect(exception.getMessage()).andReturn("Twitter Service Test error");
+		EasyMock.expect(exception.getMessage()).andReturn("Twitter Service Test error").anyTimes();
 		EasyMock.replay(exception);
 		EasyMock.expect(factory.getInstance()).andReturn(t);
 		EasyMock.expect(
@@ -162,25 +163,8 @@ public class TwitterMediaServiceTest {
 		EasyMock.replay(t);
 		TwitterMediaService service = new TwitterMediaService();
 		ReflectionTestUtils.setField(service, "factory", factory);
-		service.getTimeLineForUser("SalesForce", 10);
+		service.getRecentTimeLineForUser("SalesForce", 10);
 	}
-	@Test(expected = SocialMediaException.class)
-	public void getUserTimelineUnHandledException() throws TwitterException {
-		TwitterFactory factory = EasyMock.createMock(TwitterFactory.class);
-		Twitter t = EasyMock.createMock(Twitter.class);
-		NullPointerException exception = EasyMock
-				.createMock(NullPointerException.class);
-		EasyMock.expect(factory.getInstance()).andReturn(t);
-		EasyMock.expect(
-				t.getUserTimeline(EasyMock.isA(String.class),
-						EasyMock.isA(Paging.class))).andThrow(exception);
-		EasyMock.replay(factory);
-		EasyMock.replay(t);
-		TwitterMediaService service = new TwitterMediaService();
-		ReflectionTestUtils.setField(service, "factory", factory);
-		service.getTimeLineForUser("SalesForce", 10);
-	}
-
 
 	@SuppressWarnings("unchecked")
 	private static ResponseList<Status> buildUserTimelineResponseList(
